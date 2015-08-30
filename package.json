@@ -12,7 +12,9 @@
   },
   "keywords": [
     "react-component",
-    "toast"
+    "toast",
+    "tip",
+    "alert"
   ],
   "author": "haolin <haolin.h0@gmail.com> (http://hao0.me)",
   "licenses": [
