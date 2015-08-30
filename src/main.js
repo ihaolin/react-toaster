@@ -14,7 +14,7 @@ module.exports = React.createClass({
         margin: '0 auto',
         fontSize: '20px'
     },
-    displayName: 'ReactToast',
+    displayName: 'ReactToaster',
     getInitialState: function(){
         return {
             display: 'none',

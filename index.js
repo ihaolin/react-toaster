@@ -4,6 +4,6 @@
  * Email : haolin.h0@gmail.com
  */
 
-var ReactToast = require('./src/main');
+var ReactToaster = require('./src/main');
 
-module.exports = ReactToast;
+module.exports = ReactToaster;

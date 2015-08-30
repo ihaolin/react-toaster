@@ -6,7 +6,7 @@
 
 var React = require('react');
 
-var ReactToast = require('../src/main');
+var ReactToaster = require('../src/main');
 
 require('./demo.css');
 
@@ -21,7 +21,7 @@ var Demo = React.createClass({
     render: function(){
         return (
             <div className="demo">
-                <ReactToast ref="toast" />
+                <ReactToaster ref="toast" />
                 <input type="button" value="Show" onClick={this.onShow}/>
                 <input type="button" value="Hide" onClick={this.onHide}/>
             </div>

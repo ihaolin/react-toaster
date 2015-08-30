@@ -62,7 +62,7 @@
 
 	var React = __webpack_require__(2);
 
-	var ReactToast = __webpack_require__(3);
+	var ReactToaster = __webpack_require__(3);
 
 	__webpack_require__(4);
 
@@ -78,7 +78,7 @@
 	        return React.createElement(
 	            'div',
 	            { className: 'demo' },
-	            React.createElement(ReactToast, { ref: 'toast' }),
+	            React.createElement(ReactToaster, { ref: 'toast' }),
 	            React.createElement('input', { type: 'button', value: 'Show', onClick: this.onShow }),
 	            React.createElement('input', { type: 'button', value: 'Hide', onClick: this.onHide })
 	        );
@@ -115,7 +115,7 @@
 	        margin: '0 auto',
 	        fontSize: '20px'
 	    },
-	    displayName: 'ReactToast',
+	    displayName: 'ReactToaster',
 	    getInitialState: function getInitialState() {
 	        return {
 	            display: 'none',
