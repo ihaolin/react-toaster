@@ -23,7 +23,7 @@ var Demo = React.createClass({
     render: function(){
         return (
             <div className="demo">
-                <ReactToast ref="toast" />
+                <ReactToaster ref="toast" />
                 <input type="button" value="Show" onClick={this.onShow}/>
                 <input type="button" value="Hide" onClick={this.onHide}/>
             </div>
@@ -47,7 +47,7 @@ var Demo = React.createClass({
 }
 
 // usage
-<ReactToast ref="toast" duration="1000" background="yellow" .../>
+<ReactToaster ref="toast" duration="1000" background="yellow" .../>
 ```
 * Maybe it's more suitable for **Mobile Web App**.
 
