@@ -5,7 +5,7 @@ A toast style message tip of React
 
 ## Installation
 
-  npm install react-toast --save-dev
+  npm install react-toaster --save-dev
 
 ## Usage
 	
@@ -13,7 +13,7 @@ A toast style message tip of React
 		
 ```javascript	
 var Demo = React.createClass({
-    displayName: 'ReactToastDemo',
+    displayName: 'ReactToasterDemo',
     onShow: function(){
         this.refs.toast.show('Hei, hei');
     },
