@@ -1,0 +1,31 @@
+{
+  "name": "react-toast",
+  "version": "0.0.1",
+  "description": "A toast of React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ihaolin/react-toast.git"
+  },
+  "keywords": [
+    "react-component",
+    "toast"
+  ],
+  "author": "haolin <haolin.h0@gmail.com> (http://hao0.me)",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ihaolin/react-toast/blob/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/ihaolin/react-toast/issues"
+  },
+  "homepage": "https://github.com/ihaolin/react-toast",
+  "devDependencies": {
+    "react": "^0.13.3"
+  }
+}
