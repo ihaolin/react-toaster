@@ -1,6 +1,6 @@
 {
   "name": "react-toaster",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A toast of React",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "react-component",
     "toast",
     "tip",
-    "alert"
+    "alert",
+    "message"
   ],
   "author": "haolin <haolin.h0@gmail.com> (http://hao0.me)",
   "licenses": [

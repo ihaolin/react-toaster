@@ -112,8 +112,7 @@
 	        position: 'absolute',
 	        textAlign: 'center',
 	        padding: '10px',
-	        margin: '0 auto',
-	        fontSize: '20px'
+	        margin: '0 auto'
 	    },
 	    displayName: 'ReactToaster',
 	    getInitialState: function getInitialState() {
@@ -133,7 +132,8 @@
 	            color: '#fff',
 	            background: 'rgba(0, 0, 0, 0.5)',
 	            opacity: .8,
-	            zIndex: 9999
+	            zIndex: 9999,
+	            fontSize: '20px'
 	        };
 	    },
 	    componentDidMount: function componentDidMount() {

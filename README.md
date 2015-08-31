@@ -43,7 +43,8 @@ var Demo = React.createClass({
     color: '#fff',
     background: 'rgba(0, 0, 0, 0.5)',
     opacity: .8,
-    zIndex: 9999
+    zIndex: 9999,
+    fontSize: '20px'
 }
 
 // usage
@@ -54,4 +55,6 @@ var Demo = React.createClass({
 ## Release History
 
 * 0.0.1 
-	* First release: It's the simplest implementation.
+	* It's the simplest implementation.
+* 0.0.2
+   * add **fontSize** property and update doc.  
