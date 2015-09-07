@@ -59,10 +59,10 @@ var Demo = React.createClass({
 * Methods
 	
 ```javascript
-	show: 
-		Show the toast with content;
-	hide: 
-		Hide the toast manually.
+show: 
+	Show the toast with content;
+hide: 
+	Hide the toast manually.
 ```
 * Maybe it's more suitable for **Mobile Web App**.
 
