@@ -13,7 +13,7 @@ require('./demo.css');
 var Demo = React.createClass({
     displayName: 'ReactToastDemo',
     onShow: function(){
-        this.refs.toast.show('Hei, hei');
+        this.refs.toast.show('<span>Hei, hei</span>');
     },
     onHide: function(){
         this.refs.toast.hide();
@@ -21,7 +21,7 @@ var Demo = React.createClass({
     render: function(){
         return (
             <div className="demo">
-                <ReactToaster ref="toast" />
+                <ReactToaster ref="toast" modal={true} css={{background: 'red'}} />
                 <input type="button" value="Show" onClick={this.onShow}/>
                 <input type="button" value="Hide" onClick={this.onHide}/>
             </div>

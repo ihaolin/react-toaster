@@ -6,65 +6,103 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
+var ReactToaster = React.createClass({
+    displayName: 'ReactToaster',
     styles:{
         position: 'absolute',
         textAlign: 'center',
         padding: '10px',
-        margin: '0 auto'
+        margin: '0 auto',
+        width: '55%',
+        left: '20%',
+        top: '40%',
+        color: '#fff',
+        background: 'rgba(0, 0, 0, 0.5)',
+        opacity: .8,
+        zIndex: 9999,
+        fontSize: '20px'
     },
-    displayName: 'ReactToaster',
     getInitialState: function(){
+        // init custom style
+        var css = this.props.css;
+        if (css){
+            for (var p in css){
+                this.styles[p] = css[p]; 
+            }
+        }
         return {
             display: 'none',
             content: '',
-            idModal: false,
-        };
-    },
-    getDefaultProps: function(){
-        return {
             auto: true,
-            duration: 2000,
-            width: '55%',
-            left: '20%',
-            top: '40%',
-            color: '#fff',
-            background: 'rgba(0, 0, 0, 0.5)',
-            opacity: .8,
-            zIndex: 9999,
-            fontSize: '20px'
+            duration: 2000
         };
-    },
-    componentDidMount: function(){
-        // custom styles
-        for (var p in this.props){
-            this.styles[p] = this.props[p];
-        }
     },
     componentDidUpdate: function(){
-        if(this.state.display === '' && this.props.auto){
+        if(this.state.display === '' && this.state.auto){
             // auto hide
-            setTimeout(this.hide, this.props.duration);
+            setTimeout(this.hide, this.state.duration);
         }
     },
     show: function(content){
         if (this.state.display === 'none') {
             content = content || '';
             this.setState({display: '', content: content});
+            this.refs.cover.show();
         }
-    },
+    }, 
     hide: function(){
         if(this.state.display === ''){
             this.setState({display: 'none'});
-        }
+            this.refs.cover.hide();
+        } 
     },
     render: function(){
         var style = this.styles;
         style.display = this.state.display;
+        if (this.props.modal){
+            return (
+                <div>
+                    <ReactToasterCover ref="cover" zIndex={style.zIndex - 1} />
+                    <div style={style} dangerouslySetInnerHTML={{__html: this.state.content}}></div>
+                </div>
+            );
+        } else {
+            return (
+                <div style={style} dangerouslySetInnerHTML={{__html: this.state.content}}></div>
+            );
+        }
+    }
+});
+
+var ReactToasterCover = React.createClass({
+    getInitialState: function(){
+        return {
+            scrolling: 'no',
+            position: 'fixed',
+            top: '0px',
+            left: '0px',
+            width: '100%',
+            height: '100%',
+            zIndex: this.props.zIndex !== undefined ? this.props.zIndex : 9998,
+            backgroundColor: 'transparent',
+            display: 'none'
+        };
+    },
+    show: function(content){
+        if (this.state.display === 'none') {
+            this.setState({display: ''});
+        }
+    }, 
+    hide: function(){
+        if(this.state.display === ''){
+            this.setState({display: 'none'});
+        } 
+    },
+    render: function(){
         return (
-            <div style={style}>
-                <span>{this.state.content}</span>
-            </div>
+            <div style={this.state}></div>
         );
     }
 });
+
+module.exports = ReactToaster;

@@ -69,7 +69,7 @@
 	var Demo = React.createClass({
 	    displayName: 'ReactToastDemo',
 	    onShow: function onShow() {
-	        this.refs.toast.show('Hei, hei');
+	        this.refs.toast.show('<span>Hei, hei</span>');
 	    },
 	    onHide: function onHide() {
 	        this.refs.toast.hide();
@@ -78,7 +78,7 @@
 	        return React.createElement(
 	            'div',
 	            { className: 'demo' },
-	            React.createElement(ReactToaster, { ref: 'toast' }),
+	            React.createElement(ReactToaster, { ref: 'toast', modal: true, css: { background: 'red' } }),
 	            React.createElement('input', { type: 'button', value: 'Show', onClick: this.onShow }),
 	            React.createElement('input', { type: 'button', value: 'Hide', onClick: this.onHide })
 	        );
@@ -107,51 +107,91 @@
 
 	var React = __webpack_require__(2);
 
-	module.exports = React.createClass({
+	var ReactToaster = React.createClass({
+	    displayName: 'ReactToaster',
 	    styles: {
 	        position: 'absolute',
 	        textAlign: 'center',
 	        padding: '10px',
-	        margin: '0 auto'
+	        margin: '0 auto',
+	        width: '55%',
+	        left: '20%',
+	        top: '40%',
+	        color: '#fff',
+	        background: 'rgba(0, 0, 0, 0.5)',
+	        opacity: .8,
+	        zIndex: 9999,
+	        fontSize: '20px'
 	    },
-	    displayName: 'ReactToaster',
 	    getInitialState: function getInitialState() {
+	        // init custom style
+	        var css = this.props.css;
+	        if (css) {
+	            for (var p in css) {
+	                this.styles[p] = css[p];
+	            }
+	        }
 	        return {
 	            display: 'none',
 	            content: '',
-	            idModal: false
-	        };
-	    },
-	    getDefaultProps: function getDefaultProps() {
-	        return {
 	            auto: true,
-	            duration: 2000,
-	            width: '55%',
-	            left: '20%',
-	            top: '40%',
-	            color: '#fff',
-	            background: 'rgba(0, 0, 0, 0.5)',
-	            opacity: .8,
-	            zIndex: 9999,
-	            fontSize: '20px'
+	            duration: 2000
 	        };
-	    },
-	    componentDidMount: function componentDidMount() {
-	        // custom styles
-	        for (var p in this.props) {
-	            this.styles[p] = this.props[p];
-	        }
 	    },
 	    componentDidUpdate: function componentDidUpdate() {
-	        if (this.state.display === '' && this.props.auto) {
+	        if (this.state.display === '' && this.state.auto) {
 	            // auto hide
-	            setTimeout(this.hide, this.props.duration);
+	            setTimeout(this.hide, this.state.duration);
 	        }
 	    },
 	    show: function show(content) {
 	        if (this.state.display === 'none') {
 	            content = content || '';
 	            this.setState({ display: '', content: content });
+	            this.refs.cover.show();
+	        }
+	    },
+	    hide: function hide() {
+	        if (this.state.display === '') {
+	            this.setState({ display: 'none' });
+	            this.refs.cover.hide();
+	        }
+	    },
+	    render: function render() {
+	        var style = this.styles;
+	        style.display = this.state.display;
+	        if (this.props.modal) {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(ReactToasterCover, { ref: 'cover', zIndex: style.zIndex - 1 }),
+	                React.createElement('div', { style: style, dangerouslySetInnerHTML: { __html: this.state.content } })
+	            );
+	        } else {
+	            return React.createElement('div', { style: style, dangerouslySetInnerHTML: { __html: this.state.content } });
+	        }
+	    }
+	});
+
+	var ReactToasterCover = React.createClass({
+	    displayName: 'ReactToasterCover',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            scrolling: 'no',
+	            position: 'fixed',
+	            top: '0px',
+	            left: '0px',
+	            width: '100%',
+	            height: '100%',
+	            zIndex: this.props.zIndex !== undefined ? this.props.zIndex : 9998,
+	            backgroundColor: 'transparent',
+	            display: 'none'
+	        };
+	    },
+	    show: function show(content) {
+	        if (this.state.display === 'none') {
+	            this.setState({ display: '' });
 	        }
 	    },
 	    hide: function hide() {
@@ -160,19 +200,11 @@
 	        }
 	    },
 	    render: function render() {
-	        var style = this.styles;
-	        style.display = this.state.display;
-	        return React.createElement(
-	            'div',
-	            { style: style },
-	            React.createElement(
-	                'span',
-	                null,
-	                this.state.content
-	            )
-	        );
+	        return React.createElement('div', { style: this.state });
 	    }
 	});
+
+	module.exports = ReactToaster;
 
 /***/ },
 /* 4 */

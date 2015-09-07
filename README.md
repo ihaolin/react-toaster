@@ -1,4 +1,4 @@
-React-toast
+React-toaster
 =========
 
 A toast style message tip of React
@@ -15,7 +15,7 @@ A toast style message tip of React
 var Demo = React.createClass({
     displayName: 'ReactToasterDemo',
     onShow: function(){
-        this.refs.toast.show('Hei, hei');
+        this.refs.toast.show('<span>Hei, hei</span>');
     },
     onHide: function(){
         this.refs.toast.hide();
@@ -31,12 +31,11 @@ var Demo = React.createClass({
     }
 });
 ```
-* Properties:
+* Configuration:
 
 ```javascript
+// css
 {
-    auto: true, 			// auto hide or not
-    duration: 2000,	
     width: '55%',	
     left: '20%',			
     top: '40%',
@@ -47,8 +46,23 @@ var Demo = React.createClass({
     fontSize: '20px'
 }
 
+// props
+{
+	auto: true,		// auto hide or not,
+	duration: 2000, 	// hide timeout
+	modal: false,		// modal or not
+}
+
 // usage
-<ReactToaster ref="toast" duration="1000" background="yellow" .../>
+<ReactToaster ref="toast" duration="1000" modal={false} auto={true} css={{background: 'red'}} />
+```
+* Methods
+	
+```javascript
+	show: 
+		Show the toast with content;
+	hide: 
+		Hide the toast manually.
 ```
 * Maybe it's more suitable for **Mobile Web App**.
 
@@ -58,3 +72,6 @@ var Demo = React.createClass({
 	* It's the simplest implementation.
 * 0.0.2
    * add **fontSize** property and update doc.  
+* 0.0.3
+	* support **modal**;
+	* extract style custom with **css** props.
